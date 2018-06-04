@@ -2,17 +2,19 @@ import React, { Component } from 'react';
 import Nav from '../components/Project/Nav';
 import View from '../components/Project/View';
 import Container from '../components/common/Container';
+import projects from '../data/Projects';
 
 class Project extends Component {
   constructor() {
     super();
-    this.projects = ['南投中正國小', '台南左鎮國中', '台南永康南台科技大學', '太平國小'];
+    this.projects = projects.list;
     this.state = {
-      project: '南投中正國小',
+      project: projects.list[0],
     };
     this.setProject = this.setProject.bind(this);
   }
   setProject(project) {
+    console.log(project)
     this.setState({
       project,
     });

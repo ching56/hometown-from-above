@@ -1,73 +1,57 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import mapboxgl from 'mapbox-gl';
-import Compare from 'mapbox-gl-compare'
-import styled from 'styled-components';
+import Compare from 'mapbox-gl-compare';
+import Container from '../common/Container';
 
 mapboxgl.accessToken = 'pk.eyJ1IjoibmNrdW1lZGlhdGVrIiwiYSI6ImNqaHcxNG93NTE1MGkzcHFocHM0MWM2MXYifQ.IyKW8pIV6KIJ-hUWkBhBrQ';
 
-const Container = styled.div`
+const RelativeContainer = Container.extend`
   position: relative;
-  height: 100%;
-`
+`;
+
+function getNewLayer(container, mapid, center) {
+  const map = new mapboxgl.Map({
+    container,
+    style: 'mapbox://styles/mapbox/streets-v9',
+    center,
+    zoom: 17,
+  });
+
+  map.on('load', () => {
+    map.addLayer({
+      "id": "raster-tiles",
+      "source": {
+        type: 'raster',
+        url: `mapbox://${mapid}`,
+        tileSize: 256,
+      },
+      type: 'raster',
+    });
+  });
+  return map;
+}
 
 class Map extends Component {
   componentDidMount() {
-    this.beforeMap = new mapboxgl.Map({
-      container: this.beforeMap,
-      style: {
-        "version": 8,
-        "sources": {
-          "raster-tiles": {
-            "type": "raster",
-            "url": "mapbox://nckumediatek.dmhf4k76",
-            "tileSize": 256
-          }
-        },
-        "layers": [{
-          "id": "simple-tiles",
-          "type": "raster",
-          "source": "raster-tiles",
-          "minzoom": 0,
-          "maxzoom": 22
-        }]
-      },
-      center: [120.99,23.906],
-      zoom: 17
-    });
-
-    this.afterMap = new mapboxgl.Map({
-      container: this.afterMap,
-      style: {
-        "version": 8,
-        "sources": {
-          "raster-tiles": {
-            "type": "raster",
-            "url": "mapbox://nckumediatek.0g8z8y6p",
-            "tileSize": 256
-          }
-        },
-        "layers": [{
-          "id": "simple-tiles",
-          "type": "raster",
-          "source": "raster-tiles",
-          "minzoom": 0,
-          "maxzoom": 22
-        }]
-      },
-      center: [120.99,23.906],
-      zoom: 17
-    });
-    // this.beforeMap.addSource('nckumediatek.dmhf4k76');
-    // this.afterMap.addSource('nckumediatek.0g8z8y6p');
-    new Compare(this.beforeMap, this.afterMap, {
-    });
+    this.beforeMap = getNewLayer(this.beforeMapDOM, this.props.newer.mapID, [120.99, 23.906]);
+    this.afterMap = getNewLayer(this.afterMapDOM, this.props.older.mapID, [120.99, 23.906]);
+    this.compare = new Compare(this.beforeMap, this.afterMap, {});
   }
   componentWillUnmount() {
     this.beforeMap.remove();
     this.afterMap.remove();
+    this.compare = undefined;
   }
-
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    this.beforeMapDOM.innerHTML = '';
+    this.afterMapDOM.innerHTML = '';
+    if (this.props.newer)
+      {this.beforeMap = getNewLayer(this.beforeMapDOM, this.props.newer.mapID, [120.99, 23.906]);}
+    if (this.props.older)
+      {this.afterMap = getNewLayer(this.afterMapDOM, this.props.older.mapID, [120.99, 23.906]);}
+    this.compare = new Compare(this.beforeMap, this.afterMap, {});
+  }
   render() {
     const style = {
       position: 'absolute',
@@ -77,17 +61,17 @@ class Map extends Component {
       left: 0,
     };
     return (
-      <Container>
-        <div style={style} ref={el => this.beforeMap = el} />
-        <div style={style} ref={el => this.afterMap = el} />
-      </Container>
-    )
+      <RelativeContainer>
+        <div style={style} ref={el => this.beforeMapDOM = el} />
+        <div style={style} ref={el => this.afterMapDOM = el} />
+      </RelativeContainer>
+    );
   }
 }
 
 Map.propTypes = {
-  dateNewer: PropTypes.instanceOf(Date),
-  dateOlder: PropTypes.instanceOf(Date),
+  newer: PropTypes.object,
+  older: PropTypes.object,
 };
 
 export default Map;

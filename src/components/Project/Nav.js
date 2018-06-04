@@ -34,7 +34,7 @@ const Nav = (props) => {
         props.projects &&
         props.projects
           .filter(d => d !== props.active)
-          .map((d, i) => <Item key={d} onClick={props.setProject.bind(null, d)}>{d}</Item>)
+          .map((d, i) => <Item key={d}><button onClick={props.setProject.bind(null, d)}>{d}</button></Item>)
       }
     </ItemGroup>
   );
