@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import Button from '@material-ui/core/Button';
 
 const ItemGroup = styled.ul`
   display: flex;
@@ -34,7 +35,7 @@ const Nav = (props) => {
         props.projects &&
         props.projects
           .filter(d => d !== props.active)
-          .map((d, i) => <Item key={d}><button onClick={props.setProject.bind(null, d)}>{d}</button></Item>)
+          .map((d, i) => <Item key={d}><Button onClick={props.setProject.bind(null, d)}>{d}</Button></Item>)
       }
     </ItemGroup>
   );

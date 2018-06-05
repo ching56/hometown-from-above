@@ -34,9 +34,9 @@ class TaskList extends Component {
               (<Task
                 click={this.setActive.bind(null, i)}
                 key={d.mapID}
-date={d.date}
+                date={d.date}
                 primary={this.state.active === i || this.state.active === (i - 1)}
-            />))
+              />))
         }
       </TaskContainer>
     );
