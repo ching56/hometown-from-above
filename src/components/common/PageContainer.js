@@ -4,7 +4,7 @@ import styled from 'styled-components'
 const Container = styled.section`
   display: flex;
   justify-content: center;
-  height: 100%;
+  flex: 1;
 `
 
 const PageContainer = (props) => {

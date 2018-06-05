@@ -7,7 +7,8 @@ import Utility from '../../data/Utility';
 
 const U = new Utility();
 const ViewContainer = Container.extend`
-display: flex;
+  display: flex;
+  flex: 1;
 `;
 
 class View extends Component {

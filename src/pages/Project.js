@@ -7,7 +7,11 @@ import projects from '../data/Projects';
 const ProjectContainer = Container.extend`
   width: 100%;
   max-width: 1080px;
-  margin-top: 36px;
+  padding: 18px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+  flex: 1;
 `
 
 class Project extends Component {

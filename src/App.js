@@ -43,12 +43,18 @@ const StyledNavLink = styled(NavLink)`
   color: inherit;
   text-decoration: none;  
 `;
+const ColContainer = Container.extend`
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: stretch;
+`
 
 
 const App = () => (
   <Container>
     <Router>
-      <Container>
+      <ColContainer>
         <Header>
           <Group>
             <Img src="http://via.placeholder.com/50x50" alt="logo" />
@@ -71,7 +77,7 @@ const App = () => (
           <Route path="/about" component={about} />
           <Route path="/uploader-info" component={uploaderInfo} />
         </PageContainer>
-      </Container>
+      </ColContainer>
     </Router>
   </Container>
 );
