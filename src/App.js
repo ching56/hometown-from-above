@@ -1,35 +1,25 @@
 import React from 'react';
 import styled, { injectGlobal } from 'styled-components';
 import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
-import reset from 'styled-reset';
 import about from './pages/About';
 import project from './pages/Project';
+import Container from './components/common/Container';
 import uploaderInfo from './pages/UploaderInfo';
 import PageContainer from './components/common/PageContainer';
-
-injectGlobal`
-  ${reset}
-  html, body, #root {
-    height: 100%;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-  }
-`;
-
-const Container = styled.div`
-  height: 100%;
-`
+import './style/base';
 
 const Header = styled.header`
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
+  padding: 24px;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
 `;
 const Group = styled.div`
   display: flex;
   justify-content: space-around;
   flex-wrap: nowrap;
+  align-items:center;
 `;
 const Nav = styled.ul`
   display: flex;
