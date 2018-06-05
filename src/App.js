@@ -26,9 +26,10 @@ const Nav = styled.ul`
   padding: 0;
   list-style: none;
   justify-content: space-between;
+  align-items: center;
 `;
 const NavItem = styled.li`
-  padding: 12px;
+  margin: 0 12px;
 `;
 const Img = styled.img`
   align-self: center;
@@ -37,11 +38,13 @@ const Img = styled.img`
 `;
 const activeStyle = {
   fontWeight: 'bold',
-  color: 'red',
+  backgroundColor: 'lightgray',
+  borderRadius: '2px',
 };
 const StyledNavLink = styled(NavLink)`
   color: inherit;
-  text-decoration: none;  
+  text-decoration: none;
+  padding: 40px 8px; 
 `;
 const ColContainer = Container.extend`
     display: flex;
