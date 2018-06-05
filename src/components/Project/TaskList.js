@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
-import Container from '../common/Container';
 import Task from './Task';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
-const TaskContainer = Container.extend`
+const TaskContainer = styled.div`
+overflow: auto;
 flex: 0;
 flex-basis: 50%;
 display: flex;
 flex-direction: column;
+padding: 24px;
 `;
 class TaskList extends Component {
   constructor() {
