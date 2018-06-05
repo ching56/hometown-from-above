@@ -25,8 +25,7 @@ function getNewLayer(container, mapid, center) {
       "id": "raster-tiles",
       "source": {
         type: 'raster',
-        url: `mapbox://${mapid}`,
-        tileSize: 256,
+        tiles: [`https://api.mapbox.com/v4/${mapid}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibmNrdW1lZGlhdGVrIiwiYSI6ImNqaHcxNG93NTE1MGkzcHFocHM0MWM2MXYifQ.IyKW8pIV6KIJ-hUWkBhBrQ`],
       },
       type: 'raster',
     });
