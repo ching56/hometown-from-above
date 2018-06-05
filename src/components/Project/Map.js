@@ -8,6 +8,8 @@ mapboxgl.accessToken = 'pk.eyJ1IjoibmNrdW1lZGlhdGVrIiwiYSI6ImNqaHcxNG93NTE1MGkzc
 
 const RelativeContainer = Container.extend`
   position: relative;
+  flex: 1;
+  flex-basis: 100%;
 `;
 
 function getNewLayer(container, mapid, center) {
@@ -34,9 +36,11 @@ function getNewLayer(container, mapid, center) {
 
 class Map extends Component {
   componentDidMount() {
-    this.beforeMap = getNewLayer(this.beforeMapDOM, this.props.newer.mapID, [120.99, 23.906]);
-    this.afterMap = getNewLayer(this.afterMapDOM, this.props.older.mapID, [120.99, 23.906]);
-    this.compare = new Compare(this.beforeMap, this.afterMap, {});
+    this.beforeMap = getNewLayer(this.beforeMapDOM, this.props.newer.mapID, this.props.newer.center || [120.99, 23.906]);
+    this.afterMap = getNewLayer(this.afterMapDOM, this.props.older.mapID, this.props.older.center || [120.99, 23.906]);
+    this.compare = new Compare(this.beforeMap, this.afterMap, {
+      // mousemove: true
+    });
   }
   componentWillUnmount() {
     this.beforeMap.remove();
@@ -47,10 +51,12 @@ class Map extends Component {
     this.beforeMapDOM.innerHTML = '';
     this.afterMapDOM.innerHTML = '';
     if (this.props.newer)
-      {this.beforeMap = getNewLayer(this.beforeMapDOM, this.props.newer.mapID, [120.99, 23.906]);}
+    { this.beforeMap = getNewLayer(this.beforeMapDOM, this.props.newer.mapID, this.props.newer.center || [120.99, 23.906]);}
     if (this.props.older)
-      {this.afterMap = getNewLayer(this.afterMapDOM, this.props.older.mapID, [120.99, 23.906]);}
-    this.compare = new Compare(this.beforeMap, this.afterMap, {});
+    { 
+      this.afterMap = getNewLayer(this.afterMapDOM, this.props.older.mapID, this.props.older.center || [120.99, 23.906]);
+      this.compare = new Compare(this.beforeMap, this.afterMap, {});
+    }
   }
   render() {
     const style = {

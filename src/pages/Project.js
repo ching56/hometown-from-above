@@ -4,6 +4,12 @@ import View from '../components/Project/View';
 import Container from '../components/common/Container';
 import projects from '../data/Projects';
 
+const ProjectContainer = Container.extend`
+  width: 100%;
+  max-width: 1080px;
+  margin-top: 36px;
+`
+
 class Project extends Component {
   constructor() {
     super();
@@ -14,17 +20,16 @@ class Project extends Component {
     this.setProject = this.setProject.bind(this);
   }
   setProject(project) {
-    console.log(project)
     this.setState({
       project,
     });
   }
   render() {
     return (
-      <Container>
+      <ProjectContainer>
         <Nav setProject={this.setProject} projects={this.projects} active={this.state.project} />
         <View project={this.state.project} />
-      </Container>
+      </ProjectContainer>
     );
   }
 }

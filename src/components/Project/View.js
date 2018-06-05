@@ -6,6 +6,9 @@ import Container from '../../components/common/Container';
 import Utility from '../../data/Utility';
 
 const U = new Utility();
+const ViewContainer = Container.extend`
+display: flex;
+`;
 
 class View extends Component {
   constructor(props) {
@@ -15,28 +18,39 @@ class View extends Component {
       this.state = {
         newer: project[0],
         older: project[1],
+        project,
+        projectName: this.props.project,
       };
     } else if (project.length === 1) {
       this.state = {
         newer: project[0],
         older: null,
+        project,
+        projectName: this.props.project,
       };
     } else {
       this.state = {
         newer: null,
         older: null,
+        project,
+        projectName: this.props.project,
       };
     }
     this.setDate = this.setDate.bind(this);
   }
   setDate(dateNewer, dateOlder) {
-    this.setState({ dateNewer, dateOlder });
+    const newer = this.state.project.filter(d => d.date === dateNewer)[0];
+    const older = this.state.project.filter(d => d.date === dateOlder)[0];
+
+    this.setState({ newer, older }, () => console.log(newer, older, this));
   }
-  static getDerivedStateFromProps(nextProps, prevState) {
+  static getDerivedStateFromProps(props, state) {
     let newer;
     let older;
-    if (prevState !== nextProps) {
-      const project = U.getProject(nextProps.project);
+    let isPropsChanged = false;
+    if (props.project !== state.projectName) {
+      const project = U.getProject(props.project);
+      isPropsChanged = true;
       if (project.length > 1) {
         newer = project[0];
         older = project[1];
@@ -47,19 +61,17 @@ class View extends Component {
         newer = null;
         older = null;
       }
-    } else {
-      return null;
+      return { newer, older, project, projectName: props.project };
     }
-    return{
-      newer,older,
-    };
+
+    return null;
   }
   render() {
     return (
-      <Container>
+      <ViewContainer>
         <Map newer={this.state.newer} older={this.state.older} />
-        <TaskList project={this.props.project} setDate={this.setDate} />
-      </Container>
+        <TaskList project={this.state.project} setDate={this.setDate} />
+      </ViewContainer>
     );
   }
 }
