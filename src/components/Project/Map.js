@@ -22,8 +22,8 @@ function getNewLayer(container, mapid, center) {
 
   map.on('load', () => {
     map.addLayer({
-      "id": "raster-tiles",
-      "source": {
+      'id': 'raster-tiles',
+      'source': {
         type: 'raster',
         tiles: [`https://api.mapbox.com/v4/${mapid}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibmNrdW1lZGlhdGVrIiwiYSI6ImNqaHcxNG93NTE1MGkzcHFocHM0MWM2MXYifQ.IyKW8pIV6KIJ-hUWkBhBrQ`],
       },
@@ -47,12 +47,13 @@ class Map extends Component {
     this.compare = undefined;
   }
   componentDidUpdate(prevProps, prevState, snapshot) {
+    const curProps = this.props;
+    if (prevProps.newer.mapID === curProps.newer.mapID && prevProps.older.mapID === curProps.older.mapID)
+      return;
     this.beforeMapDOM.innerHTML = '';
     this.afterMapDOM.innerHTML = '';
-    if (this.props.newer)
-    { this.beforeMap = getNewLayer(this.beforeMapDOM, this.props.newer.mapID, this.props.newer.center || [120.99, 23.906]);}
-    if (this.props.older)
-    { 
+    if (this.props.newer) { this.beforeMap = getNewLayer(this.beforeMapDOM, this.props.newer.mapID, this.props.newer.center || [120.99, 23.906]); }
+    if (this.props.older) {
       this.afterMap = getNewLayer(this.afterMapDOM, this.props.older.mapID, this.props.older.center || [120.99, 23.906]);
       this.compare = new Compare(this.beforeMap, this.afterMap, {});
     }

@@ -5,7 +5,7 @@ class About extends Component {
     return (
       <div>
         <div>
-Hero image
+          Hero image
         </div>
         <div>
           features

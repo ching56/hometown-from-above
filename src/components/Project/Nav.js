@@ -25,10 +25,9 @@ const FocusedItem = styled.li`
   font-weight: 500;
   padding: 12px;
   opacity: 0.6;
-`
+`;
 
-const Nav = (props) => {
-  return (
+const Nav = (props) => (
     <ItemGroup>
       <FocusedItem>看見 {props.active}</FocusedItem>
       {
@@ -39,7 +38,6 @@ const Nav = (props) => {
       }
     </ItemGroup>
   );
-};
 
 Nav.propTypes = {
   setProject: PropTypes.func.isRequired,

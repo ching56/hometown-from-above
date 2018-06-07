@@ -7,6 +7,19 @@ import Container from './components/common/Container';
 import uploaderInfo from './pages/UploaderInfo';
 import PageContainer from './components/common/PageContainer';
 import './style/base';
+import firebase from 'firebase';
+
+const config = {
+  apiKey: 'AIzaSyDW0NLjaYlW4ce9Ny-TPuP5FezdkA0hQJE',
+  authDomain: 'hometown-from-above.firebaseapp.com',
+  databaseURL: 'https://hometown-from-above.firebaseio.com',
+  projectId: 'hometown-from-above',
+  storageBucket: 'hometown-from-above.appspot.com',
+  messagingSenderId: '1064918437602',
+};
+
+firebase.initializeApp(config);
+window.firebaseCommentsRef = firebase.database().ref().child('comments');
 
 const Header = styled.header`
   display: flex;
@@ -47,11 +60,11 @@ const StyledNavLink = styled(NavLink)`
   padding: 40px 8px; 
 `;
 const ColContainer = Container.extend`
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    justify-content: stretch;
-`
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: stretch;
+`;
 
 
 const App = () => (
@@ -65,7 +78,7 @@ const App = () => (
           </Group>
           <Nav>
             <NavItem>
-              <StyledNavLink exact activeStyle={activeStyle} to="/">看見</StyledNavLink>
+              <StyledNavLink exact activeStyle={activeStyle} to="/hometown-from-above">看見</StyledNavLink>
             </NavItem>
             <NavItem>
               <StyledNavLink activeStyle={activeStyle} to="/about">關於</StyledNavLink>
@@ -76,7 +89,7 @@ const App = () => (
           </Nav>
         </Header>
         <PageContainer>
-          <Route exact path="/" component={project} />
+          <Route exact path="/hometown-from-above" component={project} />
           <Route path="/about" component={about} />
           <Route path="/uploader-info" component={uploaderInfo} />
         </PageContainer>

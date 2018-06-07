@@ -62,7 +62,9 @@ class View extends Component {
         newer = null;
         older = null;
       }
-      return { newer, older, project, projectName: props.project };
+      return {
+ newer, older, project, projectName: props.project 
+};
     }
 
     return null;
@@ -71,7 +73,7 @@ class View extends Component {
     return (
       <ViewContainer>
         <Map newer={this.state.newer} older={this.state.older} />
-        <TaskList project={this.state.project} setDate={this.setDate} />
+        <TaskList projectName={this.props.project} project={this.state.project} setDate={this.setDate} />
       </ViewContainer>
     );
   }

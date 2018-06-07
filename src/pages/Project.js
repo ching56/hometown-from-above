@@ -12,7 +12,7 @@ const ProjectContainer = Container.extend`
   flex-direction: column;
   justify-content: stretch;
   flex: 1;
-`
+`;
 
 class Project extends Component {
   constructor() {
