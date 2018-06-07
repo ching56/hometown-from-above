@@ -80,17 +80,17 @@ const App = () => (
               <StyledNavLink exact activeStyle={activeStyle} to="/hometown-from-above">看見</StyledNavLink>
             </NavItem>
             <NavItem>
-              <StyledNavLink activeStyle={activeStyle} to="/about">關於</StyledNavLink>
+              <StyledNavLink activeStyle={activeStyle} to="/hometown-from-above/about">關於</StyledNavLink>
             </NavItem>
             <NavItem>
-              <StyledNavLink activeStyle={activeStyle} to="/uploader-info">我要上傳空拍照!</StyledNavLink>
+              <StyledNavLink activeStyle={activeStyle} to="/hometown-from-above/uploader-info">我要上傳空拍照!</StyledNavLink>
             </NavItem>
           </Nav>
         </Header>
         <PageContainer>
           <Route exact path="/hometown-from-above" component={project} />
-          <Route path="/about" component={about} />
-          <Route path="/uploader-info" component={uploaderInfo} />
+          <Route path="/hometown-from-above/about" component={about} />
+          <Route path="/hometown-from-above/uploader-info" component={uploaderInfo} />
         </PageContainer>
       </ColContainer>
     </Router>
