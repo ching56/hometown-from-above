@@ -8,6 +8,8 @@ const ItemGroup = styled.ul`
   list-style: none;
   padding: 0;
   align-items: baseline;
+  flex-wrap: wrap;
+  justify-content: center;
 `;
 
 const Item = styled.li`

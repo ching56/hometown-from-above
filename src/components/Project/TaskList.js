@@ -5,8 +5,9 @@ import styled from 'styled-components';
 
 const TaskContainer = styled.div`
   overflow: auto;
-  flex: 0;
-  flex-basis: 50%;
+  flex: 1;
+  flex-basis: 30%;
+  min-width: 320px;
   display: flex;
   flex-direction: column;
   padding: 24px;

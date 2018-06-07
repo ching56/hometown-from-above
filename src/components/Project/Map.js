@@ -9,7 +9,7 @@ mapboxgl.accessToken = 'pk.eyJ1IjoibmNrdW1lZGlhdGVrIiwiYSI6ImNqaHcxNG93NTE1MGkzc
 const RelativeContainer = Container.extend`
   position: relative;
   flex: 1;
-  flex-basis: 100%;
+  flex-basis: 70%;
 `;
 
 function getNewLayer(container, mapid, center) {

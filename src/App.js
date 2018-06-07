@@ -25,7 +25,6 @@ const Header = styled.header`
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
-  padding: 24px;
   border-bottom: 1px solid rgba(0,0,0,0.1);
 `;
 const Group = styled.div`
@@ -42,7 +41,7 @@ const Nav = styled.ul`
   align-items: center;
 `;
 const NavItem = styled.li`
-  margin: 0 12px;
+  margin: 24px;
 `;
 const Img = styled.img`
   align-self: center;
@@ -51,13 +50,13 @@ const Img = styled.img`
 `;
 const activeStyle = {
   fontWeight: 'bold',
-  backgroundColor: 'lightgray',
-  borderRadius: '2px',
+  color: 'blue',
+  borderRadius: '4px',
 };
 const StyledNavLink = styled(NavLink)`
   color: inherit;
   text-decoration: none;
-  padding: 40px 8px; 
+  word-break: keep-all;
 `;
 const ColContainer = Container.extend`
   display: flex;

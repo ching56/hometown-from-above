@@ -9,6 +9,7 @@ const U = new Utility();
 const ViewContainer = Container.extend`
   display: flex;
   flex: 1;
+  flex-wrap: wrap;
 `;
 
 class View extends Component {
