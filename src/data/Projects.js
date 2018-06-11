@@ -65,11 +65,6 @@ const Projects = {
     ],
     太平國小: [
       {
-        date: '2017/11/28',
-        mapID: 'nckumediatek.b1pjk5yt',
-        center: [121.2993189184577, 23.388397332266255, 0],
-      },
-      {
         date: '2017/11/27',
         mapID: 'nckumediatek.0lq58v10',
         center: [121.30203786409622, 23.3900635131734, 0],
